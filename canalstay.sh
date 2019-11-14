@@ -123,6 +123,7 @@ help
 backserver
 tty
 
+export display=':0'
 cd `pwd`/.code
 python -m SimpleHTTPServer $portsrv 2> .srv_$portsrv & disown -h $!
 echo "Server with python running in background, port: $port"
