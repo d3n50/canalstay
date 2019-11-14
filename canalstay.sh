@@ -112,7 +112,7 @@ portsrv=$3
 tm=$4
 
 if [ ! -d .code ];then
-        chmod .code
+        mkdir .code
 fi
 if [ ! -f .persis ];then
         mv persis .persis 
