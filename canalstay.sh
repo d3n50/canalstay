@@ -128,5 +128,5 @@ cd `pwd`/.code
 python -m SimpleHTTPServer $portsrv 2> .srv_$portsrv & disown -h $!
 echo "Server with python running in background, port: $port"
 echo 'If you want stop the persistence, execute this command in the remote machine with only one session opened: ./clear_per_linux.sh & disown -h $!;exit'
-echo "[] Waiting fof conexions..."
+echo "[*] Waiting fof conexions..."
 bc
